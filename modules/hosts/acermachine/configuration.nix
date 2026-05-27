@@ -82,6 +82,7 @@
      font-awesome
      ];
     
+    system.stateVersion = "25.11";
   };
 
 }
