@@ -8,7 +8,11 @@
 
   perSystem = { pkgs, lib, self', ... }: {
     packages.myNiri = inputs.wrapper-modules.wrappers.niri.wrap {
-      inherit pkgs; # THIS PART IS VERY IMPORTAINT, I FORGOT IT IN THE VIDEO!!!
+      inherit pkgs; 
+      
+      # Optional: Add this line to tell the wrapper you are using the new syntax
+      v2-settings = true;
+
       settings = {
         spawn-at-startup = [
           (lib.getExe self'.packages.myNoctalia)
@@ -21,49 +25,44 @@
         layout.gaps = 5;
 
         binds = {
-          # --- Your Existing Binds ---
+          # --- Your Base Binds ---
           "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
-          "Mod+Q".close-window = null;
+          "Mod+Q".close-window = _: {};
           "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
 
-          # --- New: Fullscreen ---
-          "Mod+F".fullscreen-window = null;
+          # --- Fullscreen ---
+          "Mod+F".fullscreen-window = _: {};
 
-          # --- New: Scroll through windows with Mod + Mouse Wheel ---
-          # Niri's defining feature is horizontal columns. Scrolling moves you left/right.
-          "Mod+WheelScrollDown".focus-column-right = null;
-          "Mod+WheelScrollUp".focus-column-left = null;
+          # --- Scroll through WORKSPACES with Mod + Mouse Wheel ---
+          "Mod+WheelScrollDown".focus-workspace-down = _: {};
+          "Mod+WheelScrollUp".focus-workspace-up = _: {};
 
           # --- Essential Niri Navigation (Keyboard) ---
-          # Move your focus between windows
-          "Mod+Left".focus-column-left = null;
-          "Mod+Right".focus-column-right = null;
-          "Mod+Up".focus-window-up = null;
-          "Mod+Down".focus-window-down = null;
+          "Mod+Left".focus-column-left = _: {};
+          "Mod+Right".focus-column-right = _: {};
+          "Mod+Up".focus-window-up = _: {};
+          "Mod+Down".focus-window-down = _: {};
 
-          # Move the actual windows around the screen
-          "Mod+Shift+Left".move-column-left = null;
-          "Mod+Shift+Right".move-column-right = null;
-          "Mod+Shift+Up".move-window-up = null;
-          "Mod+Shift+Down".move-window-down = null;
+          "Mod+Shift+Left".move-column-left = _: {};
+          "Mod+Shift+Right".move-column-right = _: {};
+          "Mod+Shift+Up".move-window-up = _: {};
+          "Mod+Shift+Down".move-window-down = _: {};
 
-          # Center the current column on the screen (Very useful in Niri!)
-          "Mod+C".center-column = null;
+          "Mod+C".center-column = _: {};
 
-          # --- Workspaces ---
+          # --- Workspaces (Keyboard Backup) ---
           "Mod+1".focus-workspace = 1;
           "Mod+2".focus-workspace = 2;
           "Mod+3".focus-workspace = 3;
           "Mod+4".focus-workspace = 4;
 
-          # Move active window to a specific workspace
           "Mod+Shift+1".move-column-to-workspace = 1;
           "Mod+Shift+2".move-column-to-workspace = 2;
           "Mod+Shift+3".move-column-to-workspace = 3;
           "Mod+Shift+4".move-column-to-workspace = 4;
 
-          # Safely exit Niri (Logs you out to SDDM)
-          "Mod+Shift+E".quit = { skip-confirmation = true; };
+          # Safely exit Niri (Will now show a confirmation prompt)
+          "Mod+Shift+E".quit = _: {};
         };
       };
     };
