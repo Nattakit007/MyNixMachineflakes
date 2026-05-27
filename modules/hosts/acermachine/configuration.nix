@@ -6,6 +6,7 @@
       self.nixosModules.acerHardware
       self.nixosModules.niri
       self.nixosModules.nvidia
+      self.nixosModules.loginmanager
       
     ];
 
@@ -59,6 +60,7 @@
     environment.systemPackages = with pkgs; [
       neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
       wget
+      kitty
       alacritty
       firefox
       git
