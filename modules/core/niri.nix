@@ -17,8 +17,17 @@
           (lib.getExe self'.packages.myNoctalia)
         ];
 
+
+        
+
+        cursor = {
+          xcursor-theme = "SamToki-BTR"; 
+          xcursor-size = 24; 
+        };
+
         xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
         input.keyboard.xkb.layout = "us,ua";
+        input.keyboard.numlock = true;
         layout.gaps = 5;
 
         # === IMPORTS ===

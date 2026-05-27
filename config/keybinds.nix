@@ -1,12 +1,15 @@
-# keybinds.nix
+# config/keybinds.nix
 { pkgs, lib, self', ... }: {
   # --- Applications ---
   "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
   "Mod+Q".close-window = _: {};
+  "Mod+Shift+S".screenshot = _: {};         # Interactive area screenshot
+  "Print".screenshot-screen = _: {};        # (Optional) Full screen screenshot
   "Mod+S".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
 
-  # --- Window Management ---
-  "Mod+F".fullscreen-window = _: {};
+  # --- Window & Column Management ---
+  "Mod+F".maximize-column = _: {};          # Changed: Stretches column to fit the screen instead of full fullscreen
+  "Mod+V".toggle-window-floating = _: {};   # New: Toggles the active window between tiled and floating states
   "Mod+C".center-column = _: {};
 
   "Mod+Shift+Left".move-column-left = _: {};
@@ -15,8 +18,8 @@
   "Mod+Shift+Down".move-window-down = _: {};
 
   # --- Navigation ---
-  "Mod+WheelScrollDown".focus-workspace-down = _: {};
-  "Mod+WheelScrollUp".focus-workspace-up = _: {};
+  "Mod+WheelScrollDown".focus-column-right = _: {};
+  "Mod+WheelScrollUp".focus-column-left = _: {};
 
   "Mod+Left".focus-column-left = _: {};
   "Mod+Right".focus-column-right = _: {};
