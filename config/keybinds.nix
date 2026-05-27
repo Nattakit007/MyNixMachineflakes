@@ -1,5 +1,5 @@
 # keybinds.nix
-{ pkgs, lib, self' }: {
+{ pkgs, lib, self', ... }: {
   # --- Applications ---
   "Mod+Return".spawn-sh = lib.getExe pkgs.kitty;
   "Mod+Q".close-window = _: {};

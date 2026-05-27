@@ -22,8 +22,8 @@
         layout.gaps = 5;
 
         # === IMPORTS ===
-        outputs = import ./monitor.nix;
-        binds = import ./keybinds.nix { inherit pkgs lib self'; };
+        outputs = import ../../config/monitor.nix;
+        binds = import ../../config/keybinds.nix { inherit pkgs lib self'; };
       };
     };
   };
