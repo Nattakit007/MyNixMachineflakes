@@ -4,7 +4,8 @@
     # import any other modules from here
     imports = [
       self.nixosModules.acerHardware
-      #self.nixosModules.niri
+      self.nixosModules.niri
+      self.nixosModules.nvidia
       
     ];
 
@@ -18,10 +19,6 @@
     # Enable networking
     networking.networkmanager.enable = true;
   
-    #DE
-    # programs.hyprland.enable = true;
-    programs.niri.enable = true;
-    
     # Set your time zone.
     time.timeZone = "Asia/Bangkok";
 
@@ -70,6 +67,8 @@
       xwayland-satellite
       xdg-desktop-portal
       vscode
+      discord
+      vesktop
    ];
 
     fonts.packages = with pkgs; [
@@ -82,7 +81,7 @@
      font-awesome
      ];
     
-    system.stateVersion = "25.11";
+    system.stateVersion = "26.05";
   };
 
 }
