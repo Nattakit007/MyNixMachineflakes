@@ -11,7 +11,7 @@
     # --- 2. Boot Menu Limit (The Keep 5 Rule) ---
     # Even if you rebuilt your system 20 times in the last 7 days, 
     # this ensures only the 5 most recent versions show up on the boot screen.
-    boot.loader.systemd-boot.configurationLimit = 5;
+    boot.loader.limine.maxGenerations = 5;
 
     # --- 3. Auto-Optimize Store ---
     # This automatically finds identical files in the Nix store and 

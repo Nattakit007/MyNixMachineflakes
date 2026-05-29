@@ -9,6 +9,21 @@
       git
       gcc
       vscode
+      jetbrains.clion
+      cmake
+      gnumake
+      stm32cubemx
+      arduino-ide
+      gcc-arm-embedded
+      openocd
+      stlink
+    ];
+
+    services.udev.packages = [
+      pkgs.stlink
+      pkgs.openocd
+    
+
     ];
   };
 }

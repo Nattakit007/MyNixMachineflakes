@@ -13,7 +13,7 @@
   };
 
   "HDMI-A-2" = {
-    mode = "1920x1080@179.961";
+    mode = "1920x1080@144.981";
     # Wrapped in the special props function
     position = _: {
       props = {
