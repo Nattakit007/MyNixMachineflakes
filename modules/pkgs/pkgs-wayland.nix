@@ -4,26 +4,41 @@
       kitty
       alacritty
       fuzzel
-      xwayland-satellite
+      # Keep xwayland-satellite here ONLY for Niri; KDE will ignore it
+      xwayland-satellite 
       xdg-desktop-portal
-      xdg-desktop-portal-gtk
     ];
 
     environment.variables = {
-      QT_QPA_PLATFORM = "wayland";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
+      QT_QPA_PLATFORM = "wayland;xcb"; # Fallback to XCB if a Wayland app misbehaves
+      
+      # REMOVED: QT_QPA_PLATFORMTHEME = "qt5ct"; 
+      # Leaving this out allows Plasma to use its native configuration engine,
+      # while standalone window managers can set it via Home Manager or local envs.
     };
 
-    #portals
+    # Portals configuration
     xdg.portal = {
       enable = true;
-      # We use gtk as the portal because it provides the most compatible 
-      # file picker and interaction for most apps
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      config.common.default = "*";
+      extraPortals = [ 
+        pkgs.xdg-desktop-portal-gtk 
+        # Note: pkgs.xdg-desktop-portal-kde is added automatically by services.desktopManager.plasma6.enable
+      ];
+      
+      # Configure portals smartly based on the current desktop session
+      config = {
+        niri = {
+          default = [ "gtk" ];
+        };
+        plasma = {
+          default = [ "kde" ];
+        };
+        common = {
+          default = [ "gtk" ]; # Global fallback
+        };
+      };
     };
 
     xdg.mime.enable = true;
-
   };
 }
